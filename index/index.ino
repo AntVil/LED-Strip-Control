@@ -356,3 +356,27 @@ void movingOutStripe(){
 void movingRainbow(){
   
 }
+
+void movingSkipPoints(){
+  
+}
+
+void pulsateColors(){ //two
+  
+}
+
+void movingBackAndForth(){
+  
+}
+
+void pulsatingToOffColor(){
+  
+}
+
+void randomSmoothChangeColor(){
+  
+}
+
+void randomBlinkColor(){
+  
+}
