@@ -132,7 +132,7 @@ void flatColor() {
 
 
 void pulsateColor(int frame) {
-  saturation = (sin(frame / 6.0 * PI) + 1) / 4 + 0.5;
+  saturation = (sin(frame / 12.0 * PI) + 1) / 4 + 0.5;
 
   int col[3];
   color(col, hue, saturation, light);
@@ -145,7 +145,7 @@ void pulsateColor(int frame) {
 }
 
 void rainbowColor(int frame) {
-  hue = (int)(hue + frame) % 360;
+  hue = (int)(hue + frame / 10) % 360;
 
   int col[3];
   color(col, hue, saturation, light);
@@ -158,17 +158,17 @@ void rainbowColor(int frame) {
 }
 
 void blinkColor(int frame) {
-  if (frame % 10 == 0) {
+  if(frame % 5){
     int col[3];
     color(col, hue, saturation, light);
-
+  
     for (int i = 0; i < LED_STRIP_PIXELS; i++) {
       pixels.setPixelColor(i, pixels.Color(col[0], col[1], col[2]));
     }
     for (int i = 0; i < LED_STRIP_PIXELS / 2; i++) {
       pixels.setPixelColor(random(LED_STRIP_PIXELS), pixels.Color(0, 0, 0));
     }
-
+  
     showNeeded = true;
   }
 }
@@ -292,11 +292,11 @@ void inwardStripe(int frame) {
   int col[3];
   color(col, hue, saturation, light);
 
-  for(int i=0;i<(frame % (int)LED_STRIP_PIXELS) / 2;i++){
+  for (int i = 0; i < (frame % (int)LED_STRIP_PIXELS) / 2; i++) {
     pixels.setPixelColor(i, pixels.Color(col[0], col[1], col[2]));
     pixels.setPixelColor(LED_STRIP_PIXELS - i - 1, pixels.Color(col[0], col[1], col[2]));
   }
-  
+
   showNeeded = true;
 }
 
@@ -306,18 +306,18 @@ void outwardStripe(int frame) {
   int col[3];
   color(col, hue, saturation, light);
 
-  for(int i=0;i<(frame % (int)LED_STRIP_PIXELS) / 2;i++){
+  for (int i = 0; i < (frame % (int)LED_STRIP_PIXELS) / 2; i++) {
     pixels.setPixelColor(LED_STRIP_PIXELS / 2 - i, pixels.Color(col[0], col[1], col[2]));
     pixels.setPixelColor(LED_STRIP_PIXELS / 2 + i, pixels.Color(col[0], col[1], col[2]));
   }
-  
+
   showNeeded = true;
 }
 
 void slideRainbow(int frame) {
   for (int i = 0; i < LED_STRIP_PIXELS; i++) {
     int col[3];
-    color(col, hue + ((int)(i + frame / 6.0) % (int)LED_STRIP_PIXELS) / LED_STRIP_PIXELS * 360, saturation, light);
+    color(col, hue + ((int)(i + frame) % (int)LED_STRIP_PIXELS) / LED_STRIP_PIXELS * 360, saturation, light);
     pixels.setPixelColor(i, pixels.Color(col[0], col[1], col[2]));
   }
 
@@ -327,7 +327,7 @@ void slideRainbow(int frame) {
 void slideLight(int frame) {
   for (int i = 0; i < LED_STRIP_PIXELS; i++) {
     int col[3];
-    color(col, hue, saturation, (light + (sin(frame / 6.0) + 1) / 2) / 2);
+    color(col, hue, saturation, (light + (sin((frame + i) / 6.0) + 1) / 2.0) / 4.0);
     pixels.setPixelColor(i, pixels.Color(col[0], col[1], col[2]));
   }
 
