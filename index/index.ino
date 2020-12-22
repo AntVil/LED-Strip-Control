@@ -9,8 +9,8 @@ CNec IRLremote;
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(LED_STRIP_PIXELS, LED_STRIP_PIN, NEO_GRB + NEO_KHZ800);
 
 void setup() {
-  Serial.begin(9600);
-  Serial.println("running");
+  //Serial.begin(9600);
+  //Serial.println("running");
 
   IRLremote.begin(IR_PIN);
   pixels.begin();

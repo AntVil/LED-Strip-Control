@@ -24,7 +24,6 @@
 int lastPressed;
 
 void processRemote(int num) {
-  Serial.println(num);
   if (num == POWER) {
     on = !on;
   } else if (num == VOL_PLUS) {
